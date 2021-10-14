@@ -19,6 +19,10 @@
                 <label>Todo Title</label>
                 <input type="text" name="title" placeholder="Enter Todo..."><br>
             </div>
+            <div class="field">
+                <label>Todo Duedate</label>
+                <input type="date" name="duedate"><br>
+            </div>
             <button class="ui blue button" type="submit">Add</button>
         </form>
 
@@ -26,23 +30,26 @@
 
         {% for todo in todo_list %}
         <div class="ui segment">
-            <p class="ui big header">{{todo.id }} | {{ todo.title }} </p>
-
-            <form class="ui form" action="/update/{{ todo.id }}" method="post">
-                <div class="ui checked checkbox">
-                    <input type="checkbox" checked="">
-                    <label></label>
-                </div>
-            </form>
-
+            <h3 class="ui big header">{{todo.id }} | {{ todo.title }} 
+            {% if todo.duedate != None %}
+                <div class="sub header">Due Date: {{ todo.duedate }}</div>
+            {% endif %} </h3>
             {% if todo.complete == False %}
-                <span class="ui gray label">Not Complete</span>
+            <span class="ui gray label">
+                <div class="ui checkbox">
+                    <input type="checkbox" name="complete" onclick='window.location.assign("/complete/{{ todo.id }}")'>
+                    <label style="color:Black">Not Complete</label>
+                </div>
+                </span>
             {% else %}
-                <span class="ui green label">Completed</span>
+                <span class="ui green label">
+                <div class="ui checked checkbox">
+                    <input type="checkbox" checked="checked" name="complete" onclick='window.location.assign("/complete/{{ todo.id }}")'>
+                    <label style="color:white">Completed</label>
+                </div>
+                </span>
             {% endif %}
 
-            
-            
             <a class="ui blue button" href="/update/{{ todo.id }}">Update</a>
             <a class="ui red button" href="/delete/{{ todo.id }}">Delete</a>
         </div>

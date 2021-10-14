@@ -19,6 +19,27 @@
                 <label>Todo Title</label>
                 <input type="text" name="title" placeholder="New Todo Title" value="{{ todo.title }}"><br>
             </div>
+            <div class="field">
+                <label>Todo Duedate</label>
+                <input type="date" name="duedate" value="{{ todo.duedate }}"><br>
+            </div>
+            <div class="field">
+                {% if todo.complete == False %}
+                <span class="ui gray label">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="complete">
+                        <label style="color:Black">Not Complete</label>
+                    </div>
+                    </span>
+                {% else %}
+                    <span class="ui green label">
+                    <div class="ui checked checkbox">
+                        <input type="checkbox" checked="checked" name="complete">
+                        <label style="color:white">Completed</label>
+                    </div>
+                    </span>
+                {% endif %}
+                </div>
             <button class="ui blue button" type="submit">Update</button>
         </form>
 

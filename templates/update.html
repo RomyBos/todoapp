@@ -21,7 +21,17 @@
             </div>
             <div class="field">
                 <label>Todo Duedate</label>
-                <input type="date" name="duedate" value="{{ todo.duedate }}"><br>
+                <div class="fields">
+                    <div class="thirteen wide field">
+                        <input type="date" name="duedate" id="duedate" value="{{ todo.duedate }}">
+                    </div>
+                    <div class="three wide field">
+                        <button class="ui basic large button" name="delete-duedate" type="button" onclick="clearDueDate()">
+                            <i class="icon trash alternate"></i>
+                            Delete Due Date
+                        </button>
+                    </div>
+                </div>
             </div>
             <div class="field">
                 {% if todo.complete == False %}
@@ -63,3 +73,9 @@
 </body>
 
 </html>
+
+<script>
+    function clearDueDate() {
+        document.getElementById("duedate").value = '';
+    }
+</script>
